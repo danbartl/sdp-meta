@@ -1,0 +1,29 @@
+name: Comparison PoC (offline)
+on:
+  push:
+    paths: ["poc/**", ".github/workflows/poc-comparison.yml"]
+  pull_request:
+    paths: ["poc/**", ".github/workflows/poc-comparison.yml"]
+permissions:
+  contents: read
+jobs:
+  local:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: poc
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+      - run: uv sync --frozen --group dev
+      - run: uv run --frozen ruff check src tests notebooks
+      - run: uv run --frozen ruff format --check src tests notebooks
+      - run: uv run --frozen pytest -q
+      - run: uv run --frozen python -m sdp_meta_poc.cli local --output .state/ci
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: local-business-model-not-native-evidence
+          path: poc/.state/ci/report.json

@@ -1,0 +1,5 @@
+.generated/
+vendor/
+resources.generated.yml
+.state/
+.ruff_cache/

@@ -1,0 +1,25 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "sdp-meta-comparison-poc"
+version = "0.1.0"
+description = "Synthetic, independently checked Bronze/Silver comparison"
+requires-python = ">=3.12,<3.13"
+dependencies = ["polars==1.44.2", "deltalake==1.6.3", "pyarrow==23.0.1", "PyYAML>=6,<7", "openpyxl==3.1.5"]
+
+[dependency-groups]
+dev = ["pytest>=8,<10", "ruff>=0.12,<1", "databricks-sdk>=0.139,<1", "build>=1,<2", "jsonschema>=4,<5", "regex>=2024"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/sdp_meta_poc"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B"]

@@ -1,0 +1,19 @@
+bundle:
+  name: sdp-meta-comparison
+
+include:
+  - resources.generated.yml
+
+sync:
+  include:
+    - vendor/*.whl
+    - vendor/build-manifest.json
+  exclude:
+    - .venv/**
+    - .state/**
+    - tests/**
+
+targets:
+  dev:
+    default: true
+    mode: development

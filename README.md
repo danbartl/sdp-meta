@@ -20,6 +20,13 @@
 
 ## Project Overview
 
+### Fork Evaluation
+
+This fork includes an isolated [Bronze/Silver comparison PoC](poc/README.md)
+for SDP-META, direct Lakeflow pipelines, and an optional private Silver framework.
+See the [decision gates](poc/DECISION.md) and [local verification record](poc/VERIFICATION.md).
+Local checks do not establish native AUTO CDC or streaming correctness.
+
 `SDP-META` is a metadata-driven framework for [Lakeflow Spark Declarative Pipelines](https://www.databricks.com/product/data-engineering/spark-declarative-pipelines). Define your Bronze and Silver pipelines in a JSON or YAML onboarding file — a single generic Declarative Pipeline reads the resulting DataflowSpec at runtime and builds the full processing graph automatically. No pipeline code to write.
 
 > 📺 **New to SDP-META?** Watch the [SDP-Meta Deep-Dive: Building Data Pipelines at Scale on Databricks](https://youtu.be/Z0CYboIzp9M) — a video walkthrough of the framework with a Demo.
